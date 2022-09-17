@@ -1,8 +1,9 @@
 const inquirer = require("inquirer");
-const writeFile = require(".utils/generate-README.md")
+const writeFile = require("./utils/generate-README.js")
+const generateREADME = require('README-template.js')
 
-// WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
-// THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
+// WHEN I enter my GitHub username
+// THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -10,51 +11,52 @@ const promptUser = () => {
       type: 'input',
       name: 'title',
       message: 'What is the title of your project?',
-    }
+    },
     {
       type: 'input',
       name: 'description',
       message: 'Please discribe your project.',
-    }
+    },
     {
       type: 'input',
       name: 'install',
       message: 'Please explain how to install your project.',
-    }
+    },
     {
       type: 'input',
       name: 'usage',
       message: 'Please explain how to use your application.',
-    }
+    },
     {
       type: 'input',
       name: 'contribution',
       message: 'Please provide contribution guidelines.',
-    }
+    },
     {
       type: 'input',
       name: 'testing',
       message: 'Please providing testing instructions.',
-    }
+    },
     {
       type: 'checkbox',
       name: 'license',
-      message: ,
-      choises: []
-    }
+      message: 'Please select a license type.',
+      choices: ["MIT license",'GNU GPLv3', 'Apache License 2.0', 'ISC License']
+    },
     {
       type: 'input',
-      name: ,
-      message: ,
-    }
+      name: 'github',
+      message: 'What is your GitHub profile name?',
+    },
     {
       type: 'input',
-      name: ,
-      message: ,
-    }
+      name: 'email',
+      message: 'What is your email address?',
+    },
   ])
-  .then(data =>
-    console.log(data));
+  
 }
 
 promptUser()
+.then(data =>
+  console.log(data));
