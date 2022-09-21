@@ -1,9 +1,6 @@
 const inquirer = require("inquirer");
 const writeFile = require("./utils/generate-README.js")
-const generateREADME = require('README-template.js')
-
-// WHEN I enter my GitHub username
-// THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
+const generateREADME = require('./src/README-template.js');
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -58,5 +55,12 @@ const promptUser = () => {
 }
 
 promptUser()
-.then(data =>
-  console.log(data));
+  .then(data => {
+    return generateREADME(data);
+  })
+  .then(pageREADME => {
+    return writeFile(pageREADME);
+  })
+  .catch(err => {
+    console.log(err);
+  })
